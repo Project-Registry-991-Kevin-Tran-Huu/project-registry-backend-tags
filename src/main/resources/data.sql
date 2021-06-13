@@ -1,3 +1,18 @@
+-- insert roles
+insert into role (type) values ('admin');
+insert into role (type) values ('user');
+-- insert accounts
+insert into account(username, role_id) values('william', 1);
+insert into account(username, role_id) values('kenny', 1);
+insert into account(username, role_id) values('william', 1);
+insert into account(username, role_id) values('Bob', 2);
+-- insert statuses
+insert into status(name) values ('IN_ITERATION');
+insert into status(name) values ('CODE_FREEZE');
+insert into status(name) values ('CODE_REVIEW');
+insert into status(name) values ('NEEDS_CLEANUP');
+insert into status(name) values ('READY_FOR_ITERATION');
+insert into status(name) values ('ACTIVE');
 insert into status(name) values ('NEEDS_ATTENTION');
 insert into status(name) values ('ARCHIVED');
 -- insert phase
@@ -21,3 +36,5 @@ insert into tag (name, description) values ('GIT', 'This project used a GIT REPO
 insert into project(description, name, owner, status, phase) values('rideforce project', 'rideforce', 3, 3, 2);
 insert into project(description, name, owner, status, phase) values('Finds potential condadites by scrapping facebook.', 'Make A Recruiting Application', 1, 2, 3);
 insert into project(description, name, owner, status, phase) values('Allows for staging to be remote', 'Caliber Staging Module', 4, 3, 2);
+-- insert organizations
+insert into organization(name, project_id) values ('test organziation', 1);

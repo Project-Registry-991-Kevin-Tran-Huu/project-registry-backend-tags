@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.revature.registry.model.Organization;
 import com.revature.registry.repository.OrganizationRepository;
 
+@Service
 public class OrganizationService {
     private OrganizationRepository oRepo;
     
