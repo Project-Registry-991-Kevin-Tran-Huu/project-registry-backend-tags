@@ -1,11 +1,13 @@
 package com.revature.registry.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import com.revature.registry.model.Project;
 import com.revature.registry.service.ProjectService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,31 +24,49 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/project", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin(origins = "http://localhost:4200")
 public class ProjectController {
+    
+    private ProjectService pServ;
+    
     @Autowired
-    private ProjectService projectService;
+    public ProjectController(ProjectService pServ) {
+        this.pServ = pServ;
+    }
 
     @GetMapping("")
     public ResponseEntity<List<Project>> getAllProjects() {
-        return projectService.getAllProjects();
+        List<Project> pList = pServ.getAllProjects();
+        
+        return new ResponseEntity<List<Project>>(pList,HttpStatus.OK);
     }
 
     @GetMapping("/id/{id}")
     public ResponseEntity<Project> getProjectById(@PathVariable("id") int id) {
-        return projectService.getProjectById(id);
+        Project p = pServ.getProjectById(id);
+        
+        return new ResponseEntity<Project>(p,HttpStatus.OK);
     }
 
     @PostMapping("")
     public ResponseEntity<Project> createProject(@RequestBody Project project) {
-        return projectService.createProject(project);
+        Project newP = pServ.createProject(project);
+        String location = String.format("/api/project/%s", newP.getId());
+        return ResponseEntity.created(URI.create(location)).body(newP);
     }
 
     @PutMapping("id/{id}")
     public ResponseEntity<Project> updateProject(@PathVariable("id") int id, @RequestBody Project project) {
-        return projectService.updateProjectById(id, project);
+        
+        Project updateP = pServ.updateProjectById(id, project);
+        
+        return new ResponseEntity<Project>(updateP, HttpStatus.OK);
     }
 
     @DeleteMapping("id/{id}")
     public ResponseEntity<Project> deleteUser(@PathVariable("id") int id) {
-        return projectService.deleteProjectById(id);
+        if(pServ.deleteProjectById(id) == true) {
+        return ResponseEntity.noContent().build();
+        }else {
+        return ResponseEntity.badRequest().build();
+        }
     }
 }

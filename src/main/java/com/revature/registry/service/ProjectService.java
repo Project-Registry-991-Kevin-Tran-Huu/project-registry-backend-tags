@@ -1,6 +1,6 @@
 package com.revature.registry.service;
 
-import java.net.URI;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -9,10 +9,10 @@ import lombok.extern.slf4j.Slf4j;
 import com.revature.registry.model.Project;
 import com.revature.registry.repository.ProjectRepository;
 
-import org.apache.log4j.Level;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,54 +21,63 @@ public class ProjectService {
     private static Logger log = Logger.getLogger(ProjectService.class);
     
     
+    private ProjectRepository pRepo;
+    
+    public ProjectService() {
+        
+    }
+    
     @Autowired
-    private ProjectRepository projectRepository;
+    public ProjectService(ProjectRepository pRepo) {
+        this.pRepo = pRepo;
+    }
+    
 
-    public ResponseEntity<List<Project>> getAllProjects() {
+    public List<Project> getAllProjects() {
  //       log.setLevel(Level.DEBUG); if Logger is not working, use setLevel
-        log.debug("Fetching all products: " + projectRepository.findAll());
-        return ResponseEntity.ok(projectRepository.findAll());
+        log.debug("Fetching all products: " + pRepo.findAll());
+        return pRepo.findAll();
     }
 
-    public ResponseEntity<Project> getProjectById(int id) {
-        Optional<Project> project = projectRepository.findById(id);
+    public Project getProjectById(int id) {
+        Optional<Project> project = pRepo.findById(id);
         if (project.isPresent()) {
             log.debug("Fetching Project with id of: " + project.get());
-            return ResponseEntity.ok(project.get());
+            return project.get();
         }
         log.error("Unable to GET. User with id " + id + " not found.");
-        return ResponseEntity.badRequest().build();
+        return null;
     }
 
-    public ResponseEntity<Project> createProject(Project project) {
-        Project savedProject = projectRepository.save(project);
+    public Project createProject(Project project) {
+        Project savedProject = pRepo.save(project);
         log.debug("Project created with the following properties: " + savedProject.toString());
-        String location = String.format("/api/project/%s", savedProject.getId());
-        return ResponseEntity.created(URI.create(location)).body(savedProject);
+       
+        return savedProject;
     }
 
-    public ResponseEntity<Project> updateProjectById(int id, Project newProject) {
-        Optional<Project> project = projectRepository.findById(id);
+    public Project updateProjectById(int id, Project newProject) {
+        Optional<Project> project = pRepo.findById(id);
         if (project.isPresent()) {
             newProject.setId(id);
-            projectRepository.save(newProject);
+            pRepo.save(newProject);
             log.debug("Project with id: " + id + " Updated with the following proprerties: " + newProject);
-            return ResponseEntity.ok(project.get());
+            return project.get();
         }
 
         log.error("Unable to update. User with id " + id + " not found.");
-        return ResponseEntity.badRequest().build();
+        return null;
     }
 
-    public ResponseEntity<Project> deleteProjectById(int id) {
-        Optional<Project> project = projectRepository.findById(id);
+    public boolean deleteProjectById(int id) {
+        Optional<Project> project = pRepo.findById(id);
         if (project.isPresent()) {
-            projectRepository.deleteById(id);
+            pRepo.deleteById(id);
             log.debug("Project Deleted with id: " + id);
-            return ResponseEntity.noContent().build();
+            return true;
         }
         log.error("Unable to DELETE. User with id " + id);
-        return ResponseEntity.badRequest().build();
+        return false;
     }
 
 }
