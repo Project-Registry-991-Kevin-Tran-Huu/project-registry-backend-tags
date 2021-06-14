@@ -39,7 +39,7 @@ public class OrganizationController {
         
         return new ResponseEntity<List<Organization>>(oList, HttpStatus.OK);
     }
-    @GetMapping(value="/id/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<Organization> getOrganizationById(@PathVariable("id") int id){
         Organization org = oServ.getOrganizationById(id);
         return new ResponseEntity<Organization>(org,HttpStatus.OK);

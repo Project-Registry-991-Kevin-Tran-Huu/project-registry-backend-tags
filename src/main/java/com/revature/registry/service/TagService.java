@@ -21,37 +21,44 @@ import org.springframework.stereotype.Service;
 public class TagService {
 private static Logger log = Logger.getLogger(TagService.class);
 
+    
+    private TagRepository tRepo;
+
+    public TagService() {
+        
+    }
     @Autowired
-    private TagRepository tagRepository;
+    public TagService(TagRepository tRepo) {
+        this.tRepo = tRepo;
+    }
 
-
-    public ResponseEntity<List<Tag>> getAllTags() {
+    public List<Tag> getAllTags() {
         log.info("Getting all tags");
-        return ResponseEntity.ok(tagRepository.findAll());
+        return tRepo.findAll();
     }
     
-    public ResponseEntity<Tag> getTagById(int id) {
+    public Tag getTagById(int id) {
         log.debug("Getting tag by Id");
-        Optional<Tag> tag = tagRepository.findById(id);
+        Optional<Tag> tag = tRepo.findById(id);
         if (tag.isPresent()) {
             log.info("Fetching Tag with id of " + id);
-            return ResponseEntity.ok(tag.get());
+            return tag.get();
         }
         log.error("Unable to GET. tag with id " + id + " not found");
-        return ResponseEntity.badRequest().build();
+        return null;
     }
     
     
-    public ResponseEntity<String> createTag(Tag tag) {
-        Tag savedTag = tagRepository.save(tag);
+    public String createTag(Tag tag) {
+        Tag savedTag = tRepo.save(tag);
         log.debug("Tag created with the following properties: {}");
         if ( savedTag.getId() != 0 ) {
-            return ResponseEntity.ok("\"Success\"");
+            return "\"Success\"";
         } else {
-            return ResponseEntity.badRequest().build();
+            return "Create Tag failed!"; 
         }
         
     }
 
-
+   // ResponseEntity.badRequest().build();
 }
