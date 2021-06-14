@@ -1,6 +1,5 @@
 package com.revature.registry.service;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +44,7 @@ public class ProjectService {
             log.debug("Fetching Project with id of: " + project.get());
             return project.get();
         }
-        log.error("Unable to GET. User with id " + id + " not found.");
+        log.error("Unable to GET. Project with id " + id + " not found.");
         return null;
     }
 
@@ -65,7 +64,7 @@ public class ProjectService {
             return project.get();
         }
 
-        log.error("Unable to update. User with id " + id + " not found.");
+        log.error("Unable to update. Project with id " + id + " not found.");
         return null;
     }
 
