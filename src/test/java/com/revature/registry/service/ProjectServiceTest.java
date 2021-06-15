@@ -16,7 +16,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import com.revature.registry.ProjectRegistryProjectApplication;
 import com.revature.registry.model.Project;
 import com.revature.registry.repository.ProjectRepository;
-import com.revature.registry.service.ProjectService;
 
 @SpringBootTest(classes = ProjectRegistryProjectApplication.class)
 public class ProjectServiceTest {
@@ -29,27 +28,23 @@ public class ProjectServiceTest {
 	//Global variables
 	static Project project1;
 	static Project project2;
-	static Project project3;
 	
 	@BeforeEach
 	void init() {
 		List<Project> projectList = new LinkedList<>();
 		project1 = new Project();
 		project2 = new Project();
-		project3 = new Project();
 		project1.setId(10);
-		project2.setId(11);
 		projectList.add(project1);
-		projectList.add(project2);
 		
 		//Mock Repo
 		when(projectRepository.findAll()).thenReturn(projectList);
 		when(projectRepository.findById(project1.getId())).thenReturn(Optional.ofNullable(project1));
-		when(projectRepository.save(project3)).thenReturn(project3);
+		when(projectRepository.save(project2)).thenReturn(project2);
 	}
 
 	@Test
-	void testGetProjectByIdReturnObject() {
+	void testGetProjectByIdReturnProject() {
 		assertThat(projectService.getProjectById(10)).isEqualTo(project1);
 	}
 	
@@ -64,14 +59,9 @@ public class ProjectServiceTest {
 	}
 	
 	@Test
-	void testCreateProjectReturnObject() {
-		assertThat(projectService.createProject(project3)).isEqualTo(project3);
+	void testCreateProjectReturnProject() {
+		assertThat(projectService.createProject(project2)).isEqualTo(project2);
 	}
-	
-//	@Test
-//	void testDeleteProjectByIdReturnTrue() {
-//		assertThat(projectService.deleteProjectById(11)).isTrue();
-//	}
 	
 	@Test
 	void testDeleteProjectByIdReturnFalse() {
@@ -79,8 +69,17 @@ public class ProjectServiceTest {
 	}
 	
 	@Test
-	void testUpdateProjectById() {
+	void testUpdateProjectByIdReturnProject() {
 		project1.setDescription("Testing");
-		assertThat(projectService.updateProjectById(project1.getId(), project1)).isEqualTo(project1);
+		assertThat(projectService.updateProjectById(project1.getId(), project1))
+			.isEqualTo(project1);
+	}
+	
+	@Test
+	void testUpdateProjectByIdReturnNull() {
+		Project testProject = new Project();
+		testProject.setId(2);
+		assertThat(projectService.updateProjectById(testProject.getId(), testProject))
+			.isNull();
 	}
 }
