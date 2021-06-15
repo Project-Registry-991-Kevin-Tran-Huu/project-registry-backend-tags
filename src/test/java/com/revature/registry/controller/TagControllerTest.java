@@ -72,7 +72,6 @@ class TagControllerTest {
         tags.add(tag1);
         tags.add(tag2);
         
-        when(tagCon.getAllTags()).thenReturn(new ResponseEntity<List<Tag>>(tags,HttpStatus.OK));
         when(tagServ.getAllTags()).thenReturn(tags);
         
         mockMvc.perform(get("/api/tag")).andExpect(status().isOk())

@@ -1,0 +1,61 @@
+2021-06-15 02:31:58 DEBUG TagService:41 - Getting tag by Id
+2021-06-15 02:31:58 INFO  TagService:44 - Fetching Tag with id of 10
+2021-06-15 02:31:59 DEBUG TagService:41 - Getting tag by Id
+2021-06-15 02:31:59 ERROR TagService:47 - Unable to GET. tag with id 1 not found
+2021-06-15 02:31:59 INFO  TagService:36 - Getting all tags
+2021-06-15 02:31:59 DEBUG TagService:54 - Tag created with the following properties: {}
+2021-06-15 02:33:27 DEBUG TagService:41 - Getting tag by Id
+2021-06-15 02:33:27 INFO  TagService:44 - Fetching Tag with id of 10
+2021-06-15 02:33:28 DEBUG TagService:41 - Getting tag by Id
+2021-06-15 02:33:28 ERROR TagService:47 - Unable to GET. tag with id 1 not found
+2021-06-15 02:33:28 INFO  TagService:36 - Getting all tags
+2021-06-15 02:33:28 DEBUG TagService:54 - Tag created with the following properties: {}
+2021-06-15 02:35:19 DEBUG TagService:41 - Getting tag by Id
+2021-06-15 02:35:19 INFO  TagService:44 - Fetching Tag with id of 10
+2021-06-15 02:35:19 DEBUG TagService:41 - Getting tag by Id
+2021-06-15 02:35:19 ERROR TagService:47 - Unable to GET. tag with id 1 not found
+2021-06-15 02:35:19 INFO  TagService:36 - Getting all tags
+2021-06-15 02:35:19 DEBUG TagService:54 - Tag created with the following properties: {}
+2021-06-15 02:36:53 DEBUG TagService:41 - Getting tag by Id
+2021-06-15 02:36:53 INFO  TagService:44 - Fetching Tag with id of 10
+2021-06-15 02:36:53 DEBUG TagService:41 - Getting tag by Id
+2021-06-15 02:36:53 ERROR TagService:47 - Unable to GET. tag with id 1 not found
+2021-06-15 02:36:53 INFO  TagService:36 - Getting all tags
+2021-06-15 02:36:53 DEBUG TagService:54 - Tag created with the following properties: {}
+2021-06-15 02:39:56 DEBUG TagService:41 - Getting tag by Id
+2021-06-15 02:39:56 INFO  TagService:44 - Fetching Tag with id of 10
+2021-06-15 02:39:56 DEBUG TagService:41 - Getting tag by Id
+2021-06-15 02:39:56 ERROR TagService:47 - Unable to GET. tag with id 1 not found
+2021-06-15 02:39:56 INFO  TagService:36 - Getting all tags
+2021-06-15 02:39:56 DEBUG TagService:54 - Tag created with the following properties: {}
+2021-06-15 02:40:16 DEBUG TagService:41 - Getting tag by Id
+2021-06-15 02:40:16 INFO  TagService:44 - Fetching Tag with id of 10
+2021-06-15 02:40:16 DEBUG TagService:41 - Getting tag by Id
+2021-06-15 02:40:16 ERROR TagService:47 - Unable to GET. tag with id 1 not found
+2021-06-15 02:40:16 INFO  TagService:36 - Getting all tags
+2021-06-15 02:40:16 DEBUG TagService:54 - Tag created with the following properties: {}
+2021-06-15 02:41:29 DEBUG TagService:41 - Getting tag by Id
+2021-06-15 02:41:30 INFO  TagService:44 - Fetching Tag with id of 10
+2021-06-15 02:41:30 DEBUG TagService:41 - Getting tag by Id
+2021-06-15 02:41:30 ERROR TagService:47 - Unable to GET. tag with id 1 not found
+2021-06-15 02:41:30 INFO  TagService:36 - Getting all tags
+2021-06-15 02:41:30 DEBUG TagService:54 - Tag created with the following properties: {}
+2021-06-15 02:48:00 DEBUG ProjectService:53 - Project created with the following properties: Project(id=0, name=null, status=null, description=null, owner=null, phase=null, tags=null)
+2021-06-15 02:48:01 DEBUG ProjectService:63 - Project with id: 10 Updated with the following proprerties: Project(id=10, name=null, status=null, description=Testing, owner=null, phase=null, tags=null)
+2021-06-15 02:48:01 DEBUG ProjectService:37 - Fetching all products: [Project(id=10, name=null, status=null, description=null, owner=null, phase=null, tags=null)]
+2021-06-15 02:48:01 DEBUG ProjectService:44 - Fetching Project with id of: Project(id=10, name=null, status=null, description=null, owner=null, phase=null, tags=null)
+2021-06-15 02:48:01 ERROR ProjectService:47 - Unable to GET. Project with id 1 not found.
+2021-06-15 02:48:01 ERROR ProjectService:78 - Unable to DELETE. User with id 1
+2021-06-15 03:10:36 DEBUG ProjectService:53 - Project created with the following properties: Project(id=0, name=null, status=null, description=null, owner=null, phase=null, tags=null)
+2021-06-15 03:10:36 DEBUG ProjectService:37 - Fetching all products: [Project(id=10, name=null, status=null, description=null, owner=null, phase=null, tags=null)]
+2021-06-15 03:10:36 DEBUG ProjectService:44 - Fetching Project with id of: Project(id=10, name=null, status=null, description=null, owner=null, phase=null, tags=null)
+2021-06-15 03:10:36 ERROR ProjectService:47 - Unable to GET. Project with id 1 not found.
+2021-06-15 03:10:36 ERROR ProjectService:78 - Unable to DELETE. User with id 1
+2021-06-15 03:10:36 DEBUG ProjectService:63 - Project with id: 10 Updated with the following proprerties: Project(id=10, name=null, status=null, description=Testing, owner=null, phase=null, tags=null)
+2021-06-15 03:19:03 ERROR ProjectService:67 - Unable to update. Project with id 2 not found.
+2021-06-15 03:19:03 DEBUG ProjectService:53 - Project created with the following properties: Project(id=0, name=null, status=null, description=null, owner=null, phase=null, tags=null)
+2021-06-15 03:19:03 DEBUG ProjectService:37 - Fetching all products: [Project(id=10, name=null, status=null, description=null, owner=null, phase=null, tags=null)]
+2021-06-15 03:19:03 DEBUG ProjectService:44 - Fetching Project with id of: Project(id=10, name=null, status=null, description=null, owner=null, phase=null, tags=null)
+2021-06-15 03:19:03 ERROR ProjectService:47 - Unable to GET. Project with id 1 not found.
+2021-06-15 03:19:03 ERROR ProjectService:78 - Unable to DELETE. User with id 1
+2021-06-15 03:19:03 DEBUG ProjectService:63 - Project with id: 10 Updated with the following proprerties: Project(id=10, name=null, status=null, description=Testing, owner=null, phase=null, tags=null)
