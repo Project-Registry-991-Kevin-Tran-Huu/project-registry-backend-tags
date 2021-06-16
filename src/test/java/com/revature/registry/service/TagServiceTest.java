@@ -13,11 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.revature.registry.ProjectRegistryProjectApplication;
+import com.revature.registry.ProjectMicroServiceApplication;
 import com.revature.registry.model.Tag;
 import com.revature.registry.repository.TagRepository;
 
-@SpringBootTest(classes = ProjectRegistryProjectApplication.class)
+@SpringBootTest(classes = ProjectMicroServiceApplication.class)
 public class TagServiceTest {
 	@MockBean
 	TagRepository tagRepository;
