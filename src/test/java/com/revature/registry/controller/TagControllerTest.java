@@ -30,12 +30,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.revature.registry.ProjectRegistryProjectApplication;
+import com.revature.registry.ProjectMicroServiceApplication;
 import com.revature.registry.model.Tag;
 import com.revature.registry.service.TagService;
 
-
-@SpringBootTest(classes = ProjectRegistryProjectApplication.class)
+@SpringBootTest(classes = ProjectMicroServiceApplication.class)
 @ExtendWith(SpringExtension.class)
 
 class TagControllerTest {
