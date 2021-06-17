@@ -30,7 +30,7 @@ public class ProjectServiceTest {
 	static Project project2;
 	
 	@BeforeEach
-	void init() {
+	void setUp() {
 		List<Project> projectList = new LinkedList<>();
 		project1 = new Project();
 		project2 = new Project();

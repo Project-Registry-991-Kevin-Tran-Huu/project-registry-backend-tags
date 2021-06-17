@@ -30,7 +30,7 @@ public class TagServiceTest {
 	static Tag tag2;
 	
 	@BeforeEach
-	void init () {
+	void setUp() {
 		List<Tag> tagList = new LinkedList<>();
 		tag1 = new Tag();
 		tag1.setId(10);

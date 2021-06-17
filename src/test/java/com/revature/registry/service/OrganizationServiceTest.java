@@ -30,7 +30,7 @@ public class OrganizationServiceTest {
 	static Organization organization2;
 	
 	@BeforeEach
-	void init() {
+	void setUp() {
 		List<Organization> organizationList = new LinkedList<>();
 		organization1 = new Organization();
 		organization2 = new Organization();
