@@ -50,7 +50,7 @@ class TagControllerTest {
     }
 
     @Test
-    public void getAllTagsTest() throws Exception {
+     void getAllTagsTest() throws Exception {
 
         Tag tag1 = new Tag();
         tag1.setId(50);
@@ -80,7 +80,7 @@ class TagControllerTest {
     }
 
     @Test
-    public void createTagTest() throws Exception {
+     void createTagTest() throws Exception {
         Tag tag1 = new Tag();
         tag1.setId(50);
         tag1.setName("Tester tag");
@@ -93,7 +93,7 @@ class TagControllerTest {
     }
 
     @Test
-    public void getTagByIdTest() throws Exception {
+     void getTagByIdTest() throws Exception {
         Tag tag1 = new Tag();
         tag1.setId(50);
         tag1.setName("Tester tag");

@@ -43,75 +43,75 @@ import com.revature.registry.repository.ProjectRepository;
 import com.revature.registry.service.ProjectService;
 
 @SpringBootTest(classes = ProjectMicroServiceApplication.class)
-public class ProjectControllerTest {
+class ProjectControllerTest {
 
-	private MockMvc mockMvc;
-	
-	@MockBean
-	ProjectService projectService;
-	
-	@Autowired
-	@InjectMocks
-	private ProjectController projectController;
-	
-	//static variables
-	Project p1;
-	Project p2;
-	List<Project> projectList;
-	
-	@BeforeEach
-	void init() {
-		mockMvc = MockMvcBuilders.standaloneSetup(projectController).build();
-			
-		p1 = new Project();
-		p1.setId(101);
-			
-		p2 = new Project();
-		p2.setId(102);
-		
-		projectList = new LinkedList<>();
-		projectList.add(p1);
-		projectList.add(p2);
-	}
-	
-	@Test
-	public void testGetAllProjects() throws Exception{
-		when(projectService.getAllProjects()).thenReturn(projectList);
-		
-		mockMvc.perform(get("/api/project")).andExpect(status().isOk())
-		.andExpect(MockMvcResultMatchers.jsonPath("$.*", isA(List.class)))
-		.andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value(p1.getId()))
-		.andExpect(MockMvcResultMatchers.jsonPath("$[1].id").value(p2.getId()));
-	}
-	
-	@Test
-	public void testGetProjectById() throws Exception{
-		when(projectService.getProjectById(101)).thenReturn(p1);
-		
-		mockMvc.perform(get("/api/project/id/101")).andExpect(status().isOk())
-		.andExpect(MockMvcResultMatchers.jsonPath("$.id").value(p1.getId()));
-	}
-	
-	@Test
-	public void testCreateProject() throws Exception{
-		Project pCreate = new Project();
-		pCreate.setId(103);
-		
-		when(projectService.createProject(pCreate)).thenReturn(pCreate);
-		
-		mockMvc.perform(post("/api/project/").contentType(MediaType.APPLICATION_JSON)
-		.content(new ObjectMapper().writeValueAsString(pCreate))).andExpect(status().isCreated());
-	}
-	
-	@Test
-	public void testUpdateProject() throws Exception{
-		Project pUpdate = new Project();
-		when(projectService.updateProjectById(p1.getId(),pUpdate)).thenReturn(pUpdate);
-		
-		mockMvc.perform(put("/api/project/id/" + p1.getId()).contentType(MediaType.APPLICATION_JSON)
-				.content(new ObjectMapper().writeValueAsString(pUpdate))).andExpect(status().isOk());		
-	}
-	
+    private MockMvc mockMvc;
+
+    @MockBean
+    ProjectService projectService;
+
+    @Autowired
+    @InjectMocks
+    private ProjectController projectController;
+
+    // static variables
+    Project p1;
+    Project p2;
+    List<Project> projectList;
+
+    @BeforeEach
+    void init() {
+        mockMvc = MockMvcBuilders.standaloneSetup(projectController).build();
+
+        p1 = new Project();
+        p1.setId(101);
+
+        p2 = new Project();
+        p2.setId(102);
+
+        projectList = new LinkedList<>();
+        projectList.add(p1);
+        projectList.add(p2);
+    }
+
+    @Test
+    void testGetAllProjects() throws Exception {
+        when(projectService.getAllProjects()).thenReturn(projectList);
+
+        mockMvc.perform(get("/api/project")).andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.*", isA(List.class)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value(p1.getId()))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[1].id").value(p2.getId()));
+    }
+
+    @Test
+    void testGetProjectById() throws Exception {
+        when(projectService.getProjectById(101)).thenReturn(p1);
+
+        mockMvc.perform(get("/api/project/id/101")).andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(p1.getId()));
+    }
+
+    @Test
+    void testCreateProject() throws Exception {
+        Project pCreate = new Project();
+        pCreate.setId(103);
+
+        when(projectService.createProject(pCreate)).thenReturn(pCreate);
+
+        mockMvc.perform(post("/api/project/").contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(pCreate))).andExpect(status().isCreated());
+    }
+
+    @Test
+    void testUpdateProject() throws Exception {
+        Project pUpdate = new Project();
+        when(projectService.updateProjectById(p1.getId(), pUpdate)).thenReturn(pUpdate);
+
+        mockMvc.perform(put("/api/project/id/" + p1.getId()).contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(pUpdate))).andExpect(status().isOk());
+    }
+
 //	@Test
 //	public void testDeleteProject() throws Exception{
 //		Project pDelete = new Project();
