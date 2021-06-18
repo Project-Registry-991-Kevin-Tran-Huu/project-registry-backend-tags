@@ -37,12 +37,12 @@ public class OrganizationController {
         
         List<Organization> oList = oServ.getAllOrganizations();
         
-        return new ResponseEntity<List<Organization>>(oList, HttpStatus.OK);
+        return new ResponseEntity<>(oList, HttpStatus.OK);
     }
     @GetMapping("/id/{id}")
     public ResponseEntity<Organization> getOrganizationById(@PathVariable("id") int id){
         Organization org = oServ.getOrganizationById(id);
-        return new ResponseEntity<Organization>(org,HttpStatus.OK);
+        return new ResponseEntity<>(org,HttpStatus.OK);
     }
     
     
@@ -57,12 +57,12 @@ public class OrganizationController {
     public ResponseEntity<Organization> updateOrganizationById(@PathVariable("id") int id, @RequestBody Organization newOrg){
         Organization updateOrg = oServ.updateOrganizationById(id, newOrg);
         
-        return new ResponseEntity<Organization>(updateOrg,HttpStatus.OK);
+        return new ResponseEntity<>(updateOrg,HttpStatus.OK);
     }
     
     @DeleteMapping("id/{id}")
     public ResponseEntity<Organization> deleteOrganizationById(@PathVariable int id){
-        if(oServ.deleteOrganizationById(id) == true) {
+        if(oServ.deleteOrganizationById(id)) {
         return ResponseEntity.noContent().build();
         }else {
         return ResponseEntity.badRequest().build();

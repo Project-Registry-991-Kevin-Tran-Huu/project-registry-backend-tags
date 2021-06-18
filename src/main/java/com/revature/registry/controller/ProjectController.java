@@ -24,9 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/project", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin(origins = "http://localhost:4200")
 public class ProjectController {
-    
+
     private ProjectService pServ;
-    
+
     @Autowired
     public ProjectController(ProjectService pServ) {
         this.pServ = pServ;
@@ -35,15 +35,15 @@ public class ProjectController {
     @GetMapping("")
     public ResponseEntity<List<Project>> getAllProjects() {
         List<Project> pList = pServ.getAllProjects();
-        
-        return new ResponseEntity<List<Project>>(pList,HttpStatus.OK);
+
+        return new ResponseEntity<>(pList, HttpStatus.OK);
     }
 
     @GetMapping("/id/{id}")
     public ResponseEntity<Project> getProjectById(@PathVariable("id") int id) {
         Project p = pServ.getProjectById(id);
-        
-        return new ResponseEntity<Project>(p,HttpStatus.OK);
+
+        return new ResponseEntity<>(p, HttpStatus.OK);
     }
 
     @PostMapping("")
@@ -55,18 +55,18 @@ public class ProjectController {
 
     @PutMapping("id/{id}")
     public ResponseEntity<Project> updateProject(@PathVariable("id") int id, @RequestBody Project project) {
-        
+
         Project updateP = pServ.updateProjectById(id, project);
-        
-        return new ResponseEntity<Project>(updateP, HttpStatus.OK);
+
+        return new ResponseEntity<>(updateP, HttpStatus.OK);
     }
 
     @DeleteMapping("id/{id}")
     public ResponseEntity<Project> deleteUser(@PathVariable("id") int id) {
-        if(pServ.deleteProjectById(id) == true) {
-        return ResponseEntity.noContent().build();
-        }else {
-        return ResponseEntity.badRequest().build();
+        if (pServ.deleteProjectById(id)) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.badRequest().build();
         }
     }
 }
