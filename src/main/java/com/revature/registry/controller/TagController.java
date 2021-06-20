@@ -2,9 +2,14 @@ package com.revature.registry.controller;
 
 import java.util.List;
 
+import com.revature.registry.model.Project;
 import com.revature.registry.model.Tag;
+import com.revature.registry.model.dto.ProjectDTO;
+import com.revature.registry.model.dto.TagDTO;
 import com.revature.registry.service.TagService;
 
+import org.apache.http.ParseException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,6 +28,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class TagController {
 
     private TagService tServ;
+    
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired
     public TagController(TagService tServ) {
@@ -36,7 +44,9 @@ public class TagController {
     }
 
     @PostMapping("")
-    public ResponseEntity<String> createTag(@RequestBody Tag tag) {
+    public ResponseEntity<String> createTag(@RequestBody TagDTO tagDto) {
+        Tag tag = convertToEntity(tagDto);
+        
         String newTag = tServ.createTag(tag);
 
         return new ResponseEntity<>(newTag, HttpStatus.OK);
@@ -46,6 +56,11 @@ public class TagController {
     public ResponseEntity<Tag> getTagById(@PathVariable("id") int id) {
         Tag tagId = tServ.getTagById(id);
         return new ResponseEntity<>(tagId, HttpStatus.OK);
+    }
+    
+    private Tag convertToEntity(TagDTO tagDto) throws ParseException {
+        return modelMapper.map(tagDto, Tag.class);
+
     }
 
 }

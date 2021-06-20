@@ -36,5 +36,5 @@ public class Organization {
     private Project project;
 
     @OneToMany(mappedBy = "organization")
-    private List<Repository> repositories = new ArrayList<>(0);
+    private List<Repository> repositories = new ArrayList<>();
 }
