@@ -1,37 +1,25 @@
 package com.revature.registry.controller;
 
 import static org.hamcrest.CoreMatchers.isA;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -39,7 +27,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.registry.ProjectMicroServiceApplication;
 import com.revature.registry.model.Project;
-import com.revature.registry.repository.ProjectRepository;
 import com.revature.registry.service.ProjectService;
 
 @SpringBootTest(classes = ProjectMicroServiceApplication.class)
@@ -112,14 +99,15 @@ public class ProjectControllerTest {
 				.content(new ObjectMapper().writeValueAsString(pUpdate))).andExpect(status().isOk());		
 	}
 	
-//	@Test
-//	public void testDeleteProject() throws Exception{
-//		Project pDelete = new Project();
-//		pDelete.setId(104);
-//		
-//		doNothing().when(projectService).deleteProjectById(104);
-//		
-//		mockMvc.perform(delete("/api/project/id/" + pDelete.getId()).contentType(MediaType.APPLICATION_JSON))
-//		.andExpect(status().isOk());
-//	}
+	@Test 
+	@Disabled
+	public void testDeleteProject() throws Exception{
+		Project pDelete = new Project();
+		pDelete.setId(104);
+		
+		doNothing().when(projectService).deleteProjectById(104);
+		
+		mockMvc.perform(delete("/api/project/id/" + pDelete.getId()).contentType(MediaType.APPLICATION_JSON))
+		.andExpect(status().isOk());
+	}
 }
