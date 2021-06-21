@@ -98,6 +98,17 @@ public class ProjectControllerTest {
 		mockMvc.perform(put("/api/project/id/" + p1.getId()).contentType(MediaType.APPLICATION_JSON)
 				.content(new ObjectMapper().writeValueAsString(pUpdate))).andExpect(status().isOk());		
 	}
+  
+  @Test
+    void convertToEntityTest() {
+        ProjectDTO projectDto = new ProjectDTO();
+        projectDto.setName("test");
+        
+        Project project = modelMapper.map(projectDto, Project.class);
+        assertEquals(projectDto.getId(),project.getId());
+        assertEquals(projectDto.getName(),project.getName());
+
+    }
 	
 	@Test 
 	@Disabled

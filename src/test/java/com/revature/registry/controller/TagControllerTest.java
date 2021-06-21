@@ -1,7 +1,7 @@
 package com.revature.registry.controller;
 
 import static org.hamcrest.CoreMatchers.isA;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -14,7 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -27,7 +27,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.registry.ProjectMicroServiceApplication;
+import com.revature.registry.model.Project;
 import com.revature.registry.model.Tag;
+import com.revature.registry.model.dto.ProjectDTO;
+import com.revature.registry.model.dto.TagDTO;
 import com.revature.registry.service.TagService;
 
 @SpringBootTest(classes = ProjectMicroServiceApplication.class)
@@ -36,6 +39,8 @@ import com.revature.registry.service.TagService;
 class TagControllerTest {
 
     private MockMvc mockMvc;
+    
+    private ModelMapper modelMapper = new ModelMapper();
 
     @MockBean
     private TagService tagServ;
@@ -50,7 +55,7 @@ class TagControllerTest {
     }
 
     @Test
-    public void getAllTagsTest() throws Exception {
+     void getAllTagsTest() throws Exception {
 
         Tag tag1 = new Tag();
         tag1.setId(50);
@@ -80,7 +85,7 @@ class TagControllerTest {
     }
 
     @Test
-    public void createTagTest() throws Exception {
+     void createTagTest() throws Exception {
         Tag tag1 = new Tag();
         tag1.setId(50);
         tag1.setName("Tester tag");
@@ -93,7 +98,7 @@ class TagControllerTest {
     }
 
     @Test
-    public void getTagByIdTest() throws Exception {
+     void getTagByIdTest() throws Exception {
         Tag tag1 = new Tag();
         tag1.setId(50);
         tag1.setName("Tester tag");
@@ -105,6 +110,17 @@ class TagControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Tester tag"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(50))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("My purpose is to exist"));
+    }
+    
+    @Test
+    void convertToEntityTest() {
+        TagDTO tagDto = new TagDTO();
+        tagDto.setName("test");
+        
+        Tag tag = modelMapper.map(tagDto, Tag.class);
+        assertEquals(tagDto.getId(),tag.getId());
+        assertEquals(tagDto.getName(),tag.getName());
+
     }
 
 }

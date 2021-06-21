@@ -1,6 +1,6 @@
 package com.revature.registry.service;
 
-import java.net.URI;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -60,5 +60,5 @@ private static Logger log = Logger.getLogger(TagService.class);
         
     }
 
-   // ResponseEntity.badRequest().build();
+    // ResponseEntity.badRequest().build();
 }

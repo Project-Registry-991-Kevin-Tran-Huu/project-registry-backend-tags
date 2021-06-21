@@ -4,8 +4,12 @@ import java.net.URI;
 import java.util.List;
 
 import com.revature.registry.model.Project;
+
+import com.revature.registry.model.dto.ProjectDTO;
 import com.revature.registry.service.ProjectService;
 
+import org.apache.http.ParseException;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,9 +28,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/project", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin(origins = "http://localhost:4200")
 public class ProjectController {
-    
+
     private ProjectService pServ;
-    
+
+    @Autowired
+    private ModelMapper modelMapper;
+
     @Autowired
     public ProjectController(ProjectService pServ) {
         this.pServ = pServ;
@@ -35,38 +42,44 @@ public class ProjectController {
     @GetMapping("")
     public ResponseEntity<List<Project>> getAllProjects() {
         List<Project> pList = pServ.getAllProjects();
-        
-        return new ResponseEntity<List<Project>>(pList,HttpStatus.OK);
+
+        return new ResponseEntity<>(pList, HttpStatus.OK);
     }
 
     @GetMapping("/id/{id}")
     public ResponseEntity<Project> getProjectById(@PathVariable("id") int id) {
         Project p = pServ.getProjectById(id);
-        
-        return new ResponseEntity<Project>(p,HttpStatus.OK);
+
+        return new ResponseEntity<>(p, HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<Project> createProject(@RequestBody Project project) {
+    public ResponseEntity<Project> createProject(@RequestBody ProjectDTO projectDto) {
+        Project project = convertToEntity(projectDto);
         Project newP = pServ.createProject(project);
         String location = String.format("/api/project/%s", newP.getId());
         return ResponseEntity.created(URI.create(location)).body(newP);
     }
 
     @PutMapping("id/{id}")
-    public ResponseEntity<Project> updateProject(@PathVariable("id") int id, @RequestBody Project project) {
-        
+    public ResponseEntity<Project> updateProject(@PathVariable("id") int id, @RequestBody ProjectDTO projectDto) {
+        Project project = convertToEntity(projectDto);
         Project updateP = pServ.updateProjectById(id, project);
-        
-        return new ResponseEntity<Project>(updateP, HttpStatus.OK);
+
+        return new ResponseEntity<>(updateP, HttpStatus.OK);
     }
 
     @DeleteMapping("id/{id}")
     public ResponseEntity<Project> deleteUser(@PathVariable("id") int id) {
-        if(pServ.deleteProjectById(id) == true) {
-        return ResponseEntity.noContent().build();
-        }else {
-        return ResponseEntity.badRequest().build();
+        if (pServ.deleteProjectById(id)) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.badRequest().build();
         }
+    }
+
+    private Project convertToEntity(ProjectDTO projectDto) throws ParseException {
+        return modelMapper.map(projectDto, Project.class);
+
     }
 }
