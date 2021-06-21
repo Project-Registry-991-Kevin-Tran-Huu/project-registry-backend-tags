@@ -60,7 +60,7 @@ public class ProjectService {
         if (project.isPresent()) {
             newProject.setId(id);
             pRepo.save(newProject);
-            log.debug("Project with id: " + id + " Updated with the following proprerties: " + newProject);
+            log.debug("Project with id: " + id + " Updated with the following properties: " + newProject);
             return project.get();
         }
 
@@ -75,7 +75,7 @@ public class ProjectService {
             log.debug("Project Deleted with id: " + id);
             return true;
         }
-        log.error("Unable to DELETE. User with id " + id);
+        log.error("Unable to DELETE. Project with id " + id+ " not found");
         return false;
     }
 

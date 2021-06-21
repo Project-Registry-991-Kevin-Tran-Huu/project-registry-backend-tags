@@ -33,7 +33,7 @@ private static Logger log = Logger.getLogger(TagService.class);
     }
 
     public List<Tag> getAllTags() {
-        log.info("Getting all tags");
+        log.info("Getting all tags: "+ tRepo.findAll());
         return tRepo.findAll();
     }
     
@@ -51,7 +51,7 @@ private static Logger log = Logger.getLogger(TagService.class);
     
     public String createTag(Tag tag) {
         Tag savedTag = tRepo.save(tag);
-        log.debug("Tag created with the following properties: {}");
+        log.debug("Tag created with the following properties: "+ savedTag.toString());
         if ( savedTag.getId() != 0 ) {
             return "\"Success\"";
         } else {
@@ -60,5 +60,5 @@ private static Logger log = Logger.getLogger(TagService.class);
         
     }
 
-    // ResponseEntity.badRequest().build();
+    
 }
