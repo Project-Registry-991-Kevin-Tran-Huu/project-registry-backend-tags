@@ -1,5 +1,11 @@
 package com.revature.registry.model.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.revature.registry.model.Project;
+import com.revature.registry.model.Repository;
+
 import lombok.Data;
 
 @Data
@@ -8,6 +14,8 @@ public class OrganizationDTO {
 
     private String name;
     
-    private int projectId;
+    private Project project;
+    
+    private List<Repository> repositories = new ArrayList<>();
 
 }
