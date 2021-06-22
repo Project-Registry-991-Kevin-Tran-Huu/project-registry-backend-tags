@@ -2,9 +2,8 @@ package com.revature.registry.controller;
 
 import java.util.List;
 
-import com.revature.registry.model.Project;
 import com.revature.registry.model.Tag;
-import com.revature.registry.model.dto.ProjectDTO;
+
 import com.revature.registry.model.dto.TagDTO;
 import com.revature.registry.service.TagService;
 
