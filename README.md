@@ -26,9 +26,9 @@ To-do List:
 ## Usage
 * This application serves as an API for the Registry frontend.
 * Entering the base endpoints into a web browser will process a get request from the api. Returning a full list of the respective database entities. 
-- Organization endpoint: /api/organization
-- Project endpoint: /api/project
-- Tag endpoint: /api/tag
+  - Organization endpoint: /api/organization
+  - Project endpoint: /api/project
+  - Tag endpoint: /api/tag
 * Adding "/id/{id}" to a base endpoint retrieves a specific entity object by its id.
 * Other API calls require execution from the front end or from a testing application like Postman.
 
