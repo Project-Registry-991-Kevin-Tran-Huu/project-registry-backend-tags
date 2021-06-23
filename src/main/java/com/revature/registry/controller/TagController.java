@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/api/tag", produces = MediaType.APPLICATION_JSON_VALUE)
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "*")
 public class TagController {
 
     private TagService tServ;
@@ -61,5 +61,4 @@ public class TagController {
         return modelMapper.map(tagDto, Tag.class);
 
     }
-
 }

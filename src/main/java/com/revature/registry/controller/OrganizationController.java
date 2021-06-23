@@ -25,7 +25,7 @@ import com.revature.registry.service.OrganizationService;
 
 @RestController
 @RequestMapping(value = "/api/organization", produces = MediaType.APPLICATION_JSON_VALUE)
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "*")
 public class OrganizationController {
 
     private OrganizationService oServ;
